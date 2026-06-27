@@ -1,10 +1,10 @@
-# 📘 Week 1 Assignment – ML Foundations
+#  Week 1 Assignment – ML Foundations
 
 This repository contains my submission for **Week 1** of the **Celebal Technologies Excellence Internship Program**. The assignment focuses on building a strong foundation in Machine Learning through Python programming, NumPy, Pandas, Linear Algebra, Statistics, and Probability Theory.
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```
 ├── README.md
@@ -13,42 +13,42 @@ This repository contains my submission for **Week 1** of the **Celebal Technolog
 
 ---
 
-## 🎯 Assignment Objectives
+##  Assignment Objectives
 
 The notebook covers the following fundamental concepts:
 
-### 🐍 Part 1 – Python Fundamentals
+### Part 1 – Python Fundamentals
 - Data Types & Control Flow
 - Data Structures
 - Exception Handling
 - Functions & Lambda Expressions
 
-### 🔢 Part 2 – NumPy
+###  Part 2 – NumPy
 - Array Creation & Reshaping
 - Indexing & Slicing
 - Matrix Operations
 - Dot Product
 
-### 📊 Part 3 – Pandas
+###  Part 3 – Pandas
 - DataFrames & Series
 - Data Selection using `loc` and `iloc`
 - Filtering & GroupBy Operations
 - Handling Missing Values
 
-### 📐 Part 4 – Linear Algebra
+###  Part 4 – Linear Algebra
 - Vector Operations
 - Matrix Operations
 - Eigenvalues & Eigenvectors
 - Singular Value Decomposition (SVD)
 
-### 📈 Part 5 – Statistics
+###  Part 5 – Statistics
 - Descriptive Statistics
 - Hypothesis Testing
 - Error Metrics
 - Distribution Testing
 - Model Monitoring Concepts (PSI)
 
-### 🎲 Part 6 – Probability Theory
+###  Part 6 – Probability Theory
 - Basic Probability Concepts
 - Probability Distributions
 - Bayes' Theorem
@@ -56,7 +56,7 @@ The notebook covers the following fundamental concepts:
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - Python 3
 - NumPy
@@ -68,7 +68,7 @@ The notebook covers the following fundamental concepts:
 
 ---
 
-## 📚 Learning Outcomes
+##  Learning Outcomes
 
 Through this assignment, I gained hands-on experience in:
 
@@ -83,7 +83,7 @@ Through this assignment, I gained hands-on experience in:
 
 ---
 
-## ▶️ How to Run
+##  How to Run
 
 1. Clone this repository.
 2. Open the notebook in **Jupyter Notebook** or **Google Colab**.
@@ -92,7 +92,7 @@ Through this assignment, I gained hands-on experience in:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Priyanshu Pratik**
 
