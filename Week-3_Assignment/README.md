@@ -1,68 +1,138 @@
 # Customer Intelligence System using Classification, Ensemble Learning & Clustering
 
-## Celebal Technologies Data Science Internship – Week 3 Assignment
+> **Celebal Technologies Data Science Internship – Week 3 Assignment**
 
 ---
 
-## Project Overview
+# Overview
 
-This project was developed as part of the **Celebal Technologies Data Science Internship – Week 3 Assignment**. The objective is to build an end-to-end **Customer Intelligence System** using both **unsupervised** and **supervised** machine learning techniques.
+This project was developed as part of the **Celebal Technologies Data Science Internship – Week 3 Assignment**. The objective is to build an end-to-end **Customer Intelligence System** by combining **unsupervised learning**, **classification**, and **ensemble learning** techniques.
 
-The project performs customer segmentation using clustering algorithms and then trains ensemble classification models to accurately predict customer groups. The resulting system provides meaningful insights into customer behavior and enables data-driven decision-making.
+Using the **Country Development Dataset** provided by Kaggle, the project segments countries into meaningful groups based on socio-economic and health indicators. The discovered clusters are then used as target labels to train machine learning models capable of automatically predicting the development segment of unseen countries.
 
----
-
-## Objective
-
-The primary objectives of this project are to:
-
-* Perform exploratory data analysis on country-level socioeconomic indicators.
-* Preprocess and standardize the dataset for machine learning.
-* Segment countries into meaningful groups using clustering algorithms.
-* Compare clustering techniques using K-Means and DBSCAN.
-* Build classification models to predict customer (country) segments.
-* Evaluate ensemble learning techniques such as Random Forest and XGBoost.
-* Generate actionable intelligence from the discovered customer segments.
+The project demonstrates the complete Machine Learning workflow, including data preprocessing, exploratory data analysis, clustering, feature engineering, supervised learning, model evaluation, visualization, and business insights.
 
 ---
 
-## Dataset
+# Problem Statement
 
-**Dataset Name:** Country Data
+HELP International, a humanitarian NGO, wants to identify countries that require immediate financial assistance and support. The organization has collected various socio-economic and health indicators for different countries.
 
-The dataset contains socioeconomic and demographic information for multiple countries. Although the original data represents countries, each country is treated as an individual customer entity for segmentation and intelligence analysis.
+The objective is to:
 
-### Files Included
-
-* `Country-data.csv` – Main dataset used for model development.
-* `data-dictionary.csv` – Description of dataset features.
-* `Customer_Intelligence_System.ipynb` – Google Colab notebook containing the complete implementation.
-
----
-
-## Dataset Features
-
-| Feature    | Description                             |
-| ---------- | --------------------------------------- |
-| country    | Country name                            |
-| child_mort | Child mortality rate                    |
-| exports    | Exports as percentage of GDP            |
-| health     | Health expenditure as percentage of GDP |
-| imports    | Imports as percentage of GDP            |
-| income     | Net income per person                   |
-| inflation  | Inflation rate                          |
-| life_expec | Average life expectancy                 |
-| total_fer  | Fertility rate                          |
-| gdpp       | GDP per capita                          |
+* Analyze the dataset
+* Discover natural country segments
+* Identify underdeveloped countries
+* Build predictive models capable of classifying countries into the discovered development groups
+* Generate actionable insights for better decision-making
 
 ---
 
-## Technologies Used
+# Dataset
+
+**Dataset Name**
+
+Country Data – Unsupervised Learning on Country Data
+
+**Source**
+
+Kaggle Dataset
+
+[https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data)
+
+---
+
+# Dataset Description
+
+The dataset contains socio-economic and health indicators of **167 countries**.
+
+Features include:
+
+| Feature    | Description                                   |
+| ---------- | --------------------------------------------- |
+| country    | Country name                                  |
+| child_mort | Deaths of children under five per 1000 births |
+| exports    | Exports as % of GDP                           |
+| health     | Health expenditure as % of GDP                |
+| imports    | Imports as % of GDP                           |
+| income     | Net income per person                         |
+| inflation  | Inflation rate                                |
+| life_expec | Average life expectancy                       |
+| total_fer  | Fertility rate                                |
+| gdpp       | GDP per capita                                |
+
+---
+
+# Objectives
+
+* Clean and preprocess the dataset
+* Perform Exploratory Data Analysis (EDA)
+* Scale numerical features
+* Apply K-Means Clustering
+* Apply DBSCAN Clustering
+* Visualize clusters using PCA
+* Profile each cluster
+* Convert clusters into class labels
+* Train Random Forest Classifier
+* Train XGBoost Classifier
+* Compare model performance
+* Generate actionable business insights
+
+---
+
+# Machine Learning Workflow
+
+```
+Dataset
+      │
+      ▼
+Data Cleaning
+      │
+      ▼
+Exploratory Data Analysis
+      │
+      ▼
+Feature Scaling
+      │
+      ▼
+K-Means Clustering
+      │
+      ▼
+DBSCAN Clustering
+      │
+      ▼
+PCA Visualization
+      │
+      ▼
+Cluster Profiling
+      │
+      ▼
+Create Target Labels
+      │
+      ▼
+Train-Test Split
+      │
+      ▼
+Random Forest
+      │
+      ▼
+XGBoost
+      │
+      ▼
+Model Evaluation
+      │
+      ▼
+Business Insights
+```
+
+---
+
+# Technologies Used
 
 * Python
 * Google Colab
-* NumPy
 * Pandas
+* NumPy
 * Matplotlib
 * Seaborn
 * Scikit-learn
@@ -70,247 +140,287 @@ The dataset contains socioeconomic and demographic information for multiple coun
 
 ---
 
-## Machine Learning Workflow
+# Machine Learning Algorithms
 
-### 1. Data Collection
-
-* Loaded the Country Data dataset.
-* Verified dataset dimensions and structure.
-* Checked missing values and data types.
-
----
-
-### 2. Data Preprocessing
-
-The preprocessing stage included:
-
-* Removing non-numeric identifier columns.
-* Feature scaling using **StandardScaler**.
-* Preparing data for clustering and classification.
-
----
-
-### 3. Exploratory Data Analysis (EDA)
-
-Performed comprehensive data analysis including:
-
-* Statistical summary
-* Feature distributions
-* Correlation heatmap
-* Identification of relationships among variables
-
-The analysis helped understand economic and demographic patterns before clustering.
-
----
-
-## Clustering Techniques
+## Unsupervised Learning
 
 ### K-Means Clustering
 
-K-Means clustering was used to group countries with similar socioeconomic characteristics.
-
-Steps performed:
-
-* Standardized all numerical features.
-* Determined the optimal number of clusters using the **Silhouette Score**.
-* Assigned each country to its nearest cluster.
-* Visualized clusters using Principal Component Analysis (PCA).
-
-### DBSCAN Clustering
-
-Density-Based Spatial Clustering (DBSCAN) was implemented to compare with K-Means.
-
-Benefits:
-
-* Detects clusters of arbitrary shapes.
-* Identifies noise and outliers.
-* Does not require specifying the number of clusters beforehand.
+Used to divide countries into different development groups based on similar socio-economic characteristics.
 
 ---
 
-## Feature Visualization
+### DBSCAN
 
-The project includes visualizations such as:
-
-* Correlation Heatmap
-* Feature Distributions
-* Silhouette Score Plot
-* PCA Cluster Visualization
-* Feature Importance Plot
-* Confusion Matrix
-
-These visualizations improve interpretability and provide better understanding of the model outputs.
+Density-based clustering algorithm used to identify dense regions and detect noise or outlier countries.
 
 ---
 
-## Classification Models
+### PCA (Principal Component Analysis)
 
-After generating clusters, the cluster labels were treated as target classes for supervised learning.
+Used for reducing feature dimensions to two principal components for cluster visualization.
+
+---
+
+## Supervised Learning
 
 ### Random Forest Classifier
 
-Random Forest is an ensemble learning algorithm that combines multiple decision trees.
-
-Advantages:
-
-* High accuracy
-* Robust against overfitting
-* Handles nonlinear relationships
-* Provides feature importance scores
-
-Evaluation Metrics:
-
-* Accuracy
-* Classification Report
-* Feature Importance
+An ensemble learning algorithm consisting of multiple decision trees used to predict country segments.
 
 ---
 
 ### XGBoost Classifier
 
-Extreme Gradient Boosting (XGBoost) is an optimized gradient boosting algorithm known for exceptional predictive performance.
+A gradient boosting ensemble algorithm that improves prediction accuracy through sequential tree learning.
 
-Advantages:
+---
 
-* Faster training
-* High accuracy
-* Regularization support
-* Excellent performance on structured datasets
+# Data Preprocessing
 
-Evaluation Metrics:
+The following preprocessing steps were performed:
 
-* Accuracy
-* Precision
-* Recall
-* F1-Score
+* Loaded CSV dataset
+* Checked dataset dimensions
+* Verified missing values
+* Removed duplicate records
+* Converted numerical columns
+* Filled missing values using median
+* Standardized numerical features using StandardScaler
+
+---
+
+# Exploratory Data Analysis
+
+Performed:
+
+* Dataset summary
+* Statistical description
+* Correlation Heatmap
+* Feature distribution
+* Boxplots
+* Outlier inspection
+
+---
+
+# Clustering
+
+## K-Means
+
+Performed using standardized numerical features.
+
+Steps:
+
+* Applied StandardScaler
+* Used Elbow Method
+* Selected optimal number of clusters
+* Assigned cluster labels
+
+---
+
+## DBSCAN
+
+Performed to compare density-based clustering with K-Means.
+
+Benefits:
+
+* Detects noise
+* Identifies dense regions
+* Does not require predefined clusters
+
+---
+
+# PCA Visualization
+
+Principal Component Analysis reduced the dataset into two dimensions for visualization.
+
+This allows easy interpretation of country clusters.
+
+---
+
+# Cluster Profiling
+
+Average values of all numerical features were calculated for every cluster to understand characteristics such as:
+
+* Child mortality
+* Income
+* GDP per capita
+* Health expenditure
+* Fertility rate
+* Life expectancy
+
+---
+
+# Classification
+
+The generated K-Means cluster labels were used as target classes.
+
+A supervised learning pipeline was developed for predicting cluster membership.
+
+---
+
+# Ensemble Learning
+
+## Random Forest
+
+* Train/Test Split
+* Model Training
+* Prediction
+* Accuracy Evaluation
+* Classification Report
 * Confusion Matrix
 
 ---
 
-## Customer Intelligence Insights
+## XGBoost
 
-The generated customer segments reveal countries with similar socioeconomic characteristics.
-
-Typical insights include:
-
-* High-income developed countries
-* Emerging economies with balanced development
-* Developing countries requiring economic improvement
-* Countries with high inflation or child mortality
-* Similar GDP and healthcare expenditure patterns
-
-These insights can support:
-
-* Customer segmentation
-* Market analysis
-* Resource allocation
-* Policy planning
-* Strategic decision-making
+* Model Training
+* Prediction
+* Accuracy Evaluation
+* Classification Report
+* Confusion Matrix
 
 ---
 
-## Project Structure
+# Model Comparison
 
-```text
-Week 3 Assignment/
+Both ensemble learning algorithms were evaluated using:
+
+* Accuracy Score
+* Classification Report
+* Confusion Matrix
+
+The comparison helps determine which model predicts country segments more effectively.
+
+---
+
+# Feature Importance
+
+Random Forest Feature Importance was plotted to identify the most influential socio-economic indicators contributing to country segmentation.
+
+Important features include:
+
+* Income
+* GDP per capita
+* Child Mortality
+* Life Expectancy
+* Total Fertility
+
+---
+
+# Business Insights
+
+The analysis revealed several meaningful insights:
+
+* Countries were successfully grouped into distinct socio-economic development segments.
+* High-income clusters exhibited greater GDP per capita and longer life expectancy.
+* Underdeveloped clusters showed higher child mortality and fertility rates.
+* DBSCAN identified dense clusters while highlighting potential outliers.
+* Random Forest and XGBoost accurately predicted country development groups.
+* The developed Customer Intelligence System enables data-driven policy formulation and resource allocation.
+
+---
+
+# Repository Structure
+
+```
+Customer-Intelligence-System/
 │
 ├── Customer_Intelligence_System.ipynb
 ├── Country-data.csv
 ├── data-dictionary.csv
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── images/
+    ├── correlation_heatmap.png
+    ├── elbow_method.png
+    ├── pca_visualization.png
+    ├── feature_importance.png
 ```
 
 ---
 
-## Requirements
+# Installation
 
-Install the required Python libraries using:
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/Customer-Intelligence-System.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd Customer-Intelligence-System
+```
+
+Install required libraries:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Required packages:
+---
 
-* numpy
-* pandas
-* matplotlib
-* seaborn
-* scikit-learn
-* xgboost
+# Requirements
+
+```
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+```
 
 ---
 
-## How to Run the Project
+# Results
 
-1. Open **Google Colab**.
-2. Upload the notebook.
-3. Upload `Country-data.csv` when prompted.
-4. Run all notebook cells sequentially.
-5. Observe clustering results, classification performance, and generated customer intelligence insights.
-
----
-
-## Results
-
-The project successfully demonstrates:
-
-* Data preprocessing and feature engineering
-* Exploratory Data Analysis
-* Customer segmentation using K-Means
-* Density-based clustering using DBSCAN
-* Ensemble classification using Random Forest
-* Gradient boosting using XGBoost
-* Cluster visualization with PCA
-* Performance evaluation using multiple metrics
-* Actionable customer intelligence insights
+* Successfully clustered countries using K-Means and DBSCAN.
+* Visualized clusters using PCA.
+* Built Random Forest and XGBoost classification models.
+* Compared ensemble learning performance.
+* Generated interpretable country profiles and business insights.
+* Developed a complete Customer Intelligence System integrating clustering, classification, and ensemble learning.
 
 ---
 
-## Learning Outcomes
+# Learning Outcomes
 
 Through this project, the following concepts were implemented:
 
-* Data preprocessing
-* Feature scaling
+* Data Cleaning
 * Exploratory Data Analysis
-* Customer segmentation
-* Unsupervised learning
-* Ensemble learning
-* Classification algorithms
-* Model evaluation
-* Feature importance analysis
-* PCA visualization
+* Feature Scaling
+* Unsupervised Learning
+* K-Means Clustering
+* DBSCAN Clustering
+* PCA
+* Cluster Profiling
+* Classification
+* Ensemble Learning
+* Random Forest
+* XGBoost
+* Model Evaluation
+* Feature Importance
+* Business Intelligence
 
 ---
 
-## Future Enhancements
+# Acknowledgements
 
-Possible improvements include:
-
-* Hyperparameter tuning using GridSearchCV or RandomizedSearchCV.
-* Implementation of Hierarchical Clustering.
-* Addition of Gaussian Mixture Models (GMM).
-* Interactive dashboards using Streamlit or Power BI.
-* Deployment as a web application using Flask or FastAPI.
-* Automated model retraining pipelines.
-
----
-
-## Conclusion
-
-This project demonstrates a complete end-to-end Customer Intelligence System by integrating unsupervised and supervised machine learning techniques. K-Means and DBSCAN effectively identify meaningful customer segments, while Random Forest and XGBoost accurately predict these segments. The combination of clustering, ensemble learning, and visualization provides valuable insights that can support data-driven business strategies and customer intelligence applications.
+* **Celebal Technologies** – Data Science Internship Program
+* **Kaggle** – Country Development Dataset
+* **Scikit-learn** – Machine Learning Library
+* **XGBoost** – Gradient Boosting Framework
+* **Google Colab** – Development Environment
 
 ---
 
 ## Author
 
 **Priyanshu Pratik**
-
-B.Tech – Computer Science & Engineering (AI & ML)
-
-ITER, Siksha 'O' Anusandhan University
-
-**Celebal Technologies Data Science Internship – Week 3 Assignment**
-
+B.Tech CSE (AI & ML)
+ITER, Siksha 'O' Anusandhan (SOA) University
+Data Science Intern – Celebal Technologies
