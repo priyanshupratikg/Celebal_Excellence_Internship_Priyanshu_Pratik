@@ -146,14 +146,26 @@ The following comparisons were performed:
 - GRU provided the best balance between computational efficiency and prediction performance.
 
 ---
-
 ## 📁 Project Structure
 
 ```
-Text_Generation_RNN_LSTM_GRU/
+Week-5_Assignment/
 │
-├── Text_Generation_RNN_LSTM_GRU_Learning_Project.ipynb
-├── README.md
+├── week5_assignment_first_phase_Priyanshu_Pratik_ITER_SOA_University.ipynb
+├── week5_assignment_final_Priyanshu_Pratik_ITER_SOA_University.ipynb
+└── README.md
+```
+
+### File Description
+
+- **week5_assignment_first_phase_Priyanshu_Pratik_ITER_SOA_University.ipynb**
+  - Contains the original implementation provided in the learning notebook with only the required modifications to execute the text generation models successfully.
+
+- **week5_assignment_final_Priyanshu_Pratik_ITER_SOA_University.ipynb**
+  - Enhanced version of the project with an expanded text corpus, improved hyperparameters, additional text generation examples, training accuracy visualization, parameter comparison, hyperparameter comparison table, and detailed experimental observations.
+
+- **README.md**
+  - Contains the project overview, objectives, workflow, implementation details, experimental analysis, results, and usage instructions.
 ```
 
 ---
