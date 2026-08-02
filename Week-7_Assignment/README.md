@@ -1,51 +1,72 @@
-# 📄 Week 7 Assignment – Retrieval-Augmented Generation (RAG) Document Question Answering System
+# 📚 AskMyDocs – RAG Document Question Answering System
 
-## 📌 Overview
+A Retrieval-Augmented Generation (RAG) based AI application that allows users to ask natural language questions about a document and receive accurate answers using **Google Gemini**, **FAISS**, **LangChain**, and **HuggingFace Embeddings**.
 
-This project implements a **Retrieval-Augmented Generation (RAG)** based Document Question Answering System using **Google Gemini**, **LangChain**, **FAISS**, **HuggingFace Embeddings**, and **Streamlit**.
-
-The application enables users to ask natural language questions about an uploaded PDF document. Instead of answering from general knowledge, the system retrieves the most relevant information from the document using semantic search and generates context-aware responses with Google Gemini.
+The application retrieves the most relevant document chunks using semantic search and generates context-aware answers powered by Google's Gemini Flash model.
 
 ---
 
-# 🎯 Objectives
+## 🌐 Live Demo
 
-- Load and process a PDF document.
-- Convert document text into semantic embeddings.
-- Store embeddings in a FAISS vector database.
-- Retrieve relevant document chunks based on user queries.
-- Generate accurate answers using Google's Gemini LLM.
-- Build an interactive Streamlit web application.
+### 🚀 Streamlit App
+https://askmydocs-rag.streamlit.app
+
+### 💻 GitHub Repository
+https://github.com/priyanshupratikg/Celebal_Excellence_Internship_Priyanshu_Pratik
+
+---
+
+## 📖 Project Overview
+
+Traditional Large Language Models answer questions using their pretrained knowledge. However, they cannot reliably answer questions from private or custom documents.
+
+This project implements a **Retrieval-Augmented Generation (RAG)** pipeline where:
+
+1. A PDF document is converted into vector embeddings.
+2. The embeddings are stored inside a FAISS vector database.
+3. User questions are converted into embeddings.
+4. The most relevant document chunks are retrieved.
+5. Retrieved context is sent to Gemini Flash.
+6. Gemini generates an answer strictly based on the retrieved document.
+
+This ensures that answers are grounded in the uploaded document rather than relying solely on the LLM's general knowledge.
 
 ---
 
 # 🚀 Features
 
-- 📄 PDF Document Processing
-- ✂️ Intelligent Text Chunking
-- 🤖 HuggingFace Sentence Embeddings
-- ⚡ FAISS Vector Database
-- 🔍 Semantic Similarity Search
-- 🧠 Google Gemini LLM Integration
-- 💬 Interactive Streamlit User Interface
-- 📚 Retrieval-Augmented Generation (RAG)
-- ⚠️ Error Handling and User-Friendly Messages
+- 📄 Ask questions about PDF documents
+- 🤖 Google Gemini Flash integration
+- 🔍 Semantic search using FAISS
+- 🧠 HuggingFace Sentence Transformers
+- ⚡ Fast document retrieval
+- 💬 Natural language interaction
+- ☁️ Fully deployed on Streamlit Cloud
+- 🎨 Clean and responsive Streamlit interface
+- ⌨️ Supports both button click and Enter key submission
 
 ---
 
-# 🛠️ Technologies Used
+# 🏗️ Project Architecture
 
-| Technology | Purpose |
-|------------|---------|
-| Python | Programming Language |
-| Streamlit | Web Application |
-| Google Gemini API | Large Language Model |
-| LangChain | RAG Pipeline |
-| FAISS | Vector Database |
-| HuggingFace Embeddings | Text Embeddings |
-| Sentence Transformers | Embedding Model |
-| PyPDFLoader | PDF Processing |
-| python-dotenv | Environment Variable Management |
+```
+                  User Question
+                        │
+                        ▼
+             Sentence Transformer
+             (Query Embedding)
+                        │
+                        ▼
+               FAISS Vector Store
+        Retrieve Top Relevant Chunks
+                        │
+                        ▼
+             Google Gemini Flash
+          (Context + User Question)
+                        │
+                        ▼
+               AI Generated Answer
+```
 
 ---
 
@@ -55,74 +76,106 @@ The application enables users to ask natural language questions about an uploade
 Week-7_Assignment/
 │
 ├── .streamlit/
-│   └── config.toml
-│      └── Streamlit configuration file for application settings.
+│   └── config.toml              # Streamlit configuration
 │
 ├── data/
-│   └── NoSQL.pdf
-│      └── Source PDF document used for question answering.
+│   └── NoSQL.pdf                # Source PDF document
 │
 ├── vector_db/
-│   ├── index.faiss
-│   └── index.pkl
-│      └── FAISS vector database storing document embeddings.
+│   ├── index.faiss              # FAISS vector index
+│   └── index.pkl                # Metadata for vector database
 │
-├── app.py
-│   └── Streamlit web application for user interaction.
-│
-├── create_vector_db.py
-│   └── Creates embeddings and builds the FAISS vector database.
-│
-├── rag.py
-│   └── Command-line RAG application for testing.
-│
-├── requirements.txt
-│   └── Python project dependencies.
-│
-├── README.md
-│   └── Project documentation.
-│
-└── .gitignore
-    └── Excludes unnecessary files from Git.
+├── app.py                       # Main Streamlit application
+├── create_vector_db.py          # Generates FAISS vector database
+├── rag.py                       # RAG helper functions
+├── requirements.txt             # Python dependencies
+├── README.md                    # Project documentation
+├── .gitignore                   # Ignored files
+└── .env                         # Local environment variables (not uploaded)
 ```
 
 ---
 
-# ⚙️ Installation
+# ⚙️ Technologies Used
 
-## 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/<your-username>/<repository-name>.git
-
-cd Week-7_Assignment
-```
-
----
-
-## 2️⃣ Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-Activate the environment
-
-### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-### Linux / macOS
-
-```bash
-source venv/bin/activate
-```
+| Technology | Purpose |
+|------------|----------|
+| Python | Programming Language |
+| Streamlit | Web Application |
+| Google Gemini Flash | Large Language Model |
+| LangChain | RAG Framework |
+| HuggingFace | Text Embeddings |
+| Sentence Transformers | Semantic Embeddings |
+| FAISS | Vector Database |
+| dotenv | Environment Variables |
 
 ---
 
-## 3️⃣ Install Dependencies
+# 🔄 Workflow
+
+### Step 1
+
+Load the PDF document.
+
+↓
+
+### Step 2
+
+Split the document into manageable chunks.
+
+↓
+
+### Step 3
+
+Generate embeddings using
+
+```
+sentence-transformers/all-MiniLM-L6-v2
+```
+
+↓
+
+### Step 4
+
+Store embeddings inside a FAISS Vector Database.
+
+↓
+
+### Step 5
+
+User asks a question.
+
+↓
+
+### Step 6
+
+Retrieve top matching document chunks.
+
+↓
+
+### Step 7
+
+Provide retrieved context to Gemini Flash.
+
+↓
+
+### Step 8
+
+Generate the final answer.
+
+---
+
+# 📦 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/priyanshupratikg/Celebal_Excellence_Internship_Priyanshu_Pratik.git
+
+cd Celebal_Excellence_Internship_Priyanshu_Pratik/Week-7_Assignment
+```
+
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -130,9 +183,9 @@ pip install -r requirements.txt
 
 ---
 
-## 4️⃣ Configure API Key
+# 🔑 Environment Variables
 
-Create a `.env` file in the project root.
+Create a `.env` file in the project directory.
 
 ```env
 GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
@@ -140,179 +193,69 @@ GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
 
 ---
 
-## 5️⃣ Create Vector Database
+# ▶️ Running the Application
+
+Generate the vector database (only once)
 
 ```bash
 python create_vector_db.py
 ```
 
-This will:
-
-- Load the PDF
-- Split the document into chunks
-- Generate embeddings
-- Create the FAISS vector database
-
----
-
-## 6️⃣ Run Command-Line RAG
-
-```bash
-python rag.py
-```
-
-Example
-
-```
-Ask a question:
-What is NoSQL?
-
-Answer:
-NoSQL is a non-relational database designed for scalability and distributed data storage.
-```
-
----
-
-## 7️⃣ Run Streamlit Application
+Run Streamlit
 
 ```bash
 streamlit run app.py
 ```
 
-Open your browser
-
-```
-http://localhost:8501
-```
-
 ---
 
-# 🔄 Workflow
-
-```
-PDF Document
-      │
-      ▼
-Load Document
-      │
-      ▼
-Text Chunking
-      │
-      ▼
-Generate Embeddings
-      │
-      ▼
-Store in FAISS
-      │
-      ▼
-User Question
-      │
-      ▼
-Semantic Search
-      │
-      ▼
-Retrieve Relevant Chunks
-      │
-      ▼
-Google Gemini
-      │
-      ▼
-Generated Answer
-```
-
----
-
-# 🧠 RAG Pipeline
-
-### Step 1
-
-Load the PDF document.
-
-### Step 2
-
-Split the document into smaller chunks.
-
-### Step 3
-
-Generate vector embeddings using HuggingFace Sentence Transformers.
-
-### Step 4
-
-Store embeddings inside the FAISS vector database.
-
-### Step 5
-
-Accept the user's question.
-
-### Step 6
-
-Perform semantic similarity search.
-
-### Step 7
-
-Retrieve the most relevant document chunks.
-
-### Step 8
-
-Send the retrieved context and question to Google Gemini.
-
-### Step 9
-
-Display the generated answer.
-
----
-
-# 💡 Sample Questions
+# 💬 Example Questions
 
 - What is NoSQL?
-- What are the advantages of document databases?
-- Explain horizontal scaling.
-- What is sharding?
-- What are the features of NoSQL databases?
-- Compare SQL and NoSQL.
-- Why is NoSQL suitable for Big Data?
-- Explain replication in NoSQL.
+- What are the advantages of NoSQL databases?
+- Explain the CAP theorem.
+- What are the types of NoSQL databases?
+- What is horizontal scaling?
+- Difference between SQL and NoSQL.
+- Explain consistency in NoSQL databases.
 
 ---
 
-# 📸 Output
+# 📸 Application Preview
 
-The Streamlit application provides:
+### Home Page
 
-- Clean and interactive interface
-- Question input field
-- Loading spinner during processing
-- Success notification
-- AI-generated context-aware answer
+Users can type natural language questions related to the uploaded document.
+
+### AI Response
+
+The application retrieves relevant information from the document and generates accurate responses using Gemini Flash.
+
+---
+
+# 🌍 Public Access
+
+The application is deployed on **Streamlit Community Cloud**.
+
+Anyone with the following link can access the application without installing anything:
+
+## 🔗 https://askmydocs-rag.streamlit.app
+
+Simply open the link in a browser and start asking questions.
 
 ---
 
 # 📈 Future Improvements
 
 - Multiple PDF support
-- Upload custom documents
+- PDF upload functionality
+- Chat history
 - Conversation memory
-- Chat interface
-- Source citation for retrieved chunks
-- Hybrid search (BM25 + Vector Search)
-- Support for multiple document formats
-- Persistent database management
-
----
-
-# 🎓 Learning Outcomes
-
-Through this project, the following concepts were implemented:
-
-- Retrieval-Augmented Generation (RAG)
-- Semantic Search
-- Vector Databases
-- Text Embeddings
-- Large Language Models (LLMs)
-- LangChain Framework
-- FAISS
-- Streamlit Deployment
-- Google Gemini API Integration
+- Citation highlighting
+- Source page references
+- Authentication
+- Docker deployment
+- Azure / AWS deployment
 
 ---
 
@@ -320,11 +263,20 @@ Through this project, the following concepts were implemented:
 
 **Priyanshu Pratik**
 
-**Data Science Intern**  
-**Celebal Technologies**
+Data Science Intern  
+Celebal Technologies
 
 ---
 
-# 📜 License
+# 🙏 Acknowledgements
 
-This project is developed for educational purposes as part of the **Celebal Technologies Data Science Internship – Week 7 Assignment**.
+- Google Gemini
+- HuggingFace
+- LangChain
+- FAISS
+- Streamlit
+- Celebal Technologies
+
+---
+
+## ⭐ If you found this project useful, consider giving the repository a star!
