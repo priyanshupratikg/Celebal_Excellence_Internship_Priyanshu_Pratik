@@ -30,7 +30,7 @@ def load_vector_db():
     )
 
     db = FAISS.load_local(
-        "vector_db",
+        str(VECTOR_DB_PATH),
         embeddings,
         allow_dangerous_deserialization=True
     )
