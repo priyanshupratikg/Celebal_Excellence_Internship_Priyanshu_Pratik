@@ -5,7 +5,11 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+from pathlib import Path
 
+BASE_DIR = Path(__file__).parent
+
+VECTOR_DB_PATH = BASE_DIR / "vector_db"
 # -----------------------------
 # Load Environment Variables
 # -----------------------------
