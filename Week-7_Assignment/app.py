@@ -39,26 +39,54 @@ db = load_vector_db()
 # Streamlit Page Settings
 # -----------------------------
 st.set_page_config(
-    page_title="Document Question Answering",
+    page_title="AskMyDocs",
     page_icon="📄",
     layout="centered"
 )
+st.markdown("""
+<style>
+.stButton > button{
+    background:#4F46E5;
+    color:white;
+    border-radius:12px;
+    height:48px;
+    width:180px;
+    font-weight:bold;
+    border:none;
+}
 
-st.title("📄 Document Question Answering (RAG)")
-st.write("Ask questions from the uploaded NoSQL document.")
+.stButton > button:hover{
+    background:#4338CA;
+}
 
+h1{
+    color:#1F2937;
+}
+
+.stTextInput input{
+    border-radius:10px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.title("📚 AskMyDocs")
+st.markdown("""
+### Intelligent AI Document Assistant
+
+Ask natural language questions and get accurate answers from your uploaded documents using **Retrieval-Augmented Generation (RAG)**.
+""")
 # -----------------------------
 # User Input
 # -----------------------------
 question = st.text_input(
-    "Enter your question",
+    "💬 Ask your document anything",
     placeholder="Example: What are the advantages of NoSQL databases?"
 )
 
 # -----------------------------
 # Generate Answer
 # -----------------------------
-if st.button("Get Answer"):
+if st.button("🔍 AskMyDocs"):
 
     if question.strip() == "":
         st.warning("⚠ Please enter a question.")
@@ -94,10 +122,16 @@ Answer:
 
                 response = model.generate_content(prompt)
 
-                st.success("✅ Answer Generated Successfully!")
+                st.success("✨ AskMyDocs found the answer!")
 
-                st.markdown("### Answer")
+                st.markdown("## 📖 AI Response")
                 st.write(response.text)
 
             except Exception as e:
                 st.error(f"Error: {e}")
+
+st.markdown("---")
+
+st.caption(
+    "🚀 AskMyDocs • Powered by Gemini Flash • FAISS • HuggingFace Embeddings"
+)
