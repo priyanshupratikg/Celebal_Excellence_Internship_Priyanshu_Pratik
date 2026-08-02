@@ -1,18 +1,22 @@
 import os
-import streamlit as st
-import google.generativeai as genai
-
-from dotenv import load_dotenv
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+import streamlit as st
+import google.generativeai as genai
+from dotenv import load_dotenv
 
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+
+# --------------------------------------------------
+# Paths
+# --------------------------------------------------
+BASE_DIR = Path(__file__).parent
 VECTOR_DB_PATH = BASE_DIR / "vector_db"
-# -----------------------------
+
+# --------------------------------------------------
 # Load Environment Variables
-# -----------------------------
+# --------------------------------------------------
 load_dotenv()
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -20,9 +24,9 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # Gemini Model
 model = genai.GenerativeModel("gemini-flash-latest")
 
-# -----------------------------
-# Load Embedding Model
-# -----------------------------
+# --------------------------------------------------
+# Load Vector Database
+# --------------------------------------------------
 @st.cache_resource
 def load_vector_db():
     embeddings = HuggingFaceEmbeddings(
@@ -37,18 +41,24 @@ def load_vector_db():
 
     return db
 
+
 db = load_vector_db()
 
-# -----------------------------
-# Streamlit Page Settings
-# -----------------------------
+# --------------------------------------------------
+# Streamlit Page Configuration
+# --------------------------------------------------
 st.set_page_config(
     page_title="AskMyDocs",
     page_icon="📄",
     layout="centered"
 )
+
+# --------------------------------------------------
+# Custom CSS
+# --------------------------------------------------
 st.markdown("""
 <style>
+
 .stButton > button{
     background:#4F46E5;
     color:white;
@@ -70,40 +80,53 @@ h1{
 .stTextInput input{
     border-radius:10px;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
+# --------------------------------------------------
+# Title
+# --------------------------------------------------
 st.title("📚 AskMyDocs")
+
 st.markdown("""
 ### Intelligent AI Document Assistant
 
 Ask natural language questions and get accurate answers from your uploaded documents using **Retrieval-Augmented Generation (RAG)**.
 """)
-# -----------------------------
-# User Input
-# -----------------------------
-question = st.text_input(
-    "💬 Ask your document anything",
-    placeholder="Example: What are the advantages of NoSQL databases?"
-)
 
-# -----------------------------
+# --------------------------------------------------
+# User Input Form
+# (Supports both Enter key and Button click)
+# --------------------------------------------------
+with st.form("ask_form"):
+
+    question = st.text_input(
+        "💬 Ask your document anything",
+        placeholder="Example: What are the advantages of NoSQL databases?"
+    )
+
+    submitted = st.form_submit_button("🔍 AskMyDocs")
+
+# --------------------------------------------------
 # Generate Answer
-# -----------------------------
-if st.button("🔍 AskMyDocs"):
+# --------------------------------------------------
+if submitted:
 
     if question.strip() == "":
         st.warning("⚠ Please enter a question.")
+
     else:
 
         with st.spinner("Searching document and generating answer..."):
 
             try:
-                # Retrieve top 5 relevant chunks
+
+                # Retrieve relevant document chunks
                 docs = db.similarity_search(question, k=5)
 
                 context = "\n\n".join(
-                    [doc.page_content for doc in docs]
+                    doc.page_content for doc in docs
                 )
 
                 prompt = f"""
@@ -111,7 +134,7 @@ You are a helpful AI assistant.
 
 Answer ONLY using the information provided below.
 
-If the answer is not present in the context, reply:
+If the answer is not present in the context, reply exactly:
 
 "I couldn't find the answer in the provided document."
 
@@ -129,11 +152,16 @@ Answer:
                 st.success("✨ AskMyDocs found the answer!")
 
                 st.markdown("## 📖 AI Response")
+
                 st.write(response.text)
 
             except Exception as e:
+
                 st.error(f"Error: {e}")
 
+# --------------------------------------------------
+# Footer
+# --------------------------------------------------
 st.markdown("---")
 
 st.caption(
